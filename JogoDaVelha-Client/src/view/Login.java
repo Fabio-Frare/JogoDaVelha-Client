@@ -1,8 +1,13 @@
 package view;
 
+import controller.Controller;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -49,7 +54,14 @@ public class Login {
 
         JButton iniciarJogo = new JButton("Iniciar");
         iniciarJogo.setBounds(70, 120, 160, 25);
-//        entrarButton.addActionListener(e -> aoPressionarEntrar());
+        
+        iniciarJogo.addActionListener(e -> {
+            try {
+                iniciarJogoListner();
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
 
         panel.add(nomePlayer);
         panel.add(txfPlayer);
@@ -68,7 +80,7 @@ public class Login {
 
     }
 
-//    private void aoPressionarEntrar() {
+//    private void iniciarJogoListner() {
 //        {
 //
 //            String usuario = txfPlayer.getText();
@@ -86,4 +98,19 @@ public class Login {
 //        }
 //
 //    }
+
+    private void iniciarJogoListner() throws IOException {
+        
+         String player   = txfPlayer.getText();
+         String clientIP = txfClientIP.getText();
+         int clientPort  = Integer.parseInt(txfClientPort.getText());
+         
+         if(!player.isEmpty() && !clientIP.isEmpty() && clientPort > 0) {
+            Controller controller = new Controller();
+            controller.enviarPlayerServer(clientIP, clientPort, player);
+         } else {
+             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
+         }
+    }
+    
 }
