@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 import utils.SocketClient;
+import view.Login;
 
 /**
  * Classe de inicialização do Jogo da Velha no cliente.
@@ -13,7 +14,10 @@ public class MainClient {
 
     public static void main(String[] args) throws IOException  {
         
-        testConexao();
+//        testConexao();
+        
+        Login login = new Login();
+        login.show(); 
         
         
     }
