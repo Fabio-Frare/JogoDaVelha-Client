@@ -5,7 +5,7 @@ import java.io.IOException;
 import utils.SocketClient;
 
 /**
- * Classe controller responsável por manter a comunicação centralizada para as demais classes do sistema.
+ * Classe controller responsável por realizar a comunicação centralizada para as demais classes do sistema.
  *
  * @author Fábio e Lucas Nogueira
  * @since 07/2022
@@ -18,9 +18,13 @@ public class Controller {
         SocketClient cliente = SocketClient.getInstance();
         cliente.init(address, port);
         cliente.setMensagem(player);        
-        cliente.call(); 
+        String resposta = cliente.call(); 
+        
+        System.out.println("Server: " + resposta);
     
     }
+    
+
     
     
     

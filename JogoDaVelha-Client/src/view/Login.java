@@ -101,16 +101,16 @@ public class Login {
 
     private void iniciarJogoListner() throws IOException {
         
-         String player   = txfPlayer.getText();
-         String clientIP = txfClientIP.getText();
-         int clientPort  = Integer.parseInt(txfClientPort.getText());
+        String player   = txfPlayer.getText();
+        String clientIP = txfClientIP.getText();
+        int clientPort  = Integer.parseInt(txfClientPort.getText());
          
-         if(!player.isEmpty() && !clientIP.isEmpty() && clientPort > 0) {
+        if(!player.isEmpty() && !clientIP.isEmpty() && clientPort > 0) {
             Controller controller = new Controller();
             controller.enviarPlayerServer(clientIP, clientPort, player);
-         } else {
-             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
-         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
+        }
     }
     
 }
