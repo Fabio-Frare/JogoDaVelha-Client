@@ -107,7 +107,7 @@ public class Login {
          
         if(!player.isEmpty() && !clientIP.isEmpty() && clientPort > 0) {
             Controller controller = new Controller();
-            controller.enviarPlayerServer(clientIP, clientPort, player);
+            controller.enviarPlayerServer(clientIP, clientPort, player);            
         } else {
             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
         }
