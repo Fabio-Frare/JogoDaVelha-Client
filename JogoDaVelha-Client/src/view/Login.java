@@ -20,9 +20,9 @@ import javax.swing.JTextField;
 public class Login {
 
     private JFrame frame;
-    private JTextField txfPlayer;
-    private JTextField txfClientIP;
-    private JTextField txfClientPort;
+    private JTextField txfNomePlayer;
+    private JTextField txfAddressServer;
+    private JTextField txfPortServer;
 
     public void show() {
 
@@ -37,20 +37,20 @@ public class Login {
         JLabel nomePlayer = new JLabel("Player");
         nomePlayer.setBounds(10, 20, 80, 25);
 
-        txfPlayer = new JTextField();
-        txfPlayer.setBounds(70, 20, 160, 25);
+        txfNomePlayer = new JTextField();
+        txfNomePlayer.setBounds(70, 20, 160, 25);
 
-        JLabel clientIP = new JLabel("IP");
-        clientIP.setBounds(10, 50, 80, 25);
+        JLabel addressServer = new JLabel("IP");
+        addressServer.setBounds(10, 50, 80, 25);
 
-        txfClientIP = new JTextField();
-        txfClientIP.setBounds(70, 50, 160, 25);
+        txfAddressServer = new JTextField();
+        txfAddressServer.setBounds(70, 50, 160, 25);
 
-        JLabel clientPort = new JLabel("Porta");
-        clientPort.setBounds(10, 80, 80, 25);
+        JLabel portServer = new JLabel("Porta");
+        portServer.setBounds(10, 80, 80, 25);
 
-        txfClientPort = new JTextField();
-        txfClientPort.setBounds(70, 80, 160, 25);
+        txfPortServer = new JTextField();
+        txfPortServer.setBounds(70, 80, 160, 25);
 
         JButton iniciarJogo = new JButton("Iniciar");
         iniciarJogo.setBounds(70, 120, 160, 25);
@@ -64,13 +64,13 @@ public class Login {
         });
 
         panel.add(nomePlayer);
-        panel.add(txfPlayer);
+        panel.add(txfNomePlayer);
         
-        panel.add(clientIP);
-        panel.add(txfClientIP);
+        panel.add(addressServer);
+        panel.add(txfAddressServer);
         
-        panel.add(clientPort);
-        panel.add(txfClientPort);
+        panel.add(portServer);
+        panel.add(txfPortServer);
         
         panel.add(iniciarJogo);
 
@@ -101,13 +101,13 @@ public class Login {
 
     private void iniciarJogoListner() throws IOException {
         
-        String player   = txfPlayer.getText();
-        String clientIP = txfClientIP.getText();
-        int clientPort  = Integer.parseInt(txfClientPort.getText());
+        String nomePlayer    = txfNomePlayer.getText();
+        String addressServer = txfAddressServer.getText();
+        int portServer       = Integer.parseInt(txfPortServer.getText());
          
-        if(!player.isEmpty() && !clientIP.isEmpty() && clientPort > 0) {
+        if(!nomePlayer.isEmpty() && !addressServer.isEmpty() && portServer > 0) {
             Controller controller = new Controller();
-            controller.enviarPlayerServer(clientIP, clientPort, player);            
+            controller.enviarPlayerServer(addressServer, portServer, nomePlayer);            
         } else {
             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
         }

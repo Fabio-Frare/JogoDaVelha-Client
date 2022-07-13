@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import utils.SocketClient;
 import utils.Utils;
 
@@ -15,13 +16,18 @@ public class Controller {
 
     private Utils utils;
     private static String msg = "";
+    
+    
 
-    public void enviarPlayerServer(String address, int port, String player) throws IOException {
+    public void enviarPlayerServer(String addressServer, int portServer, String nomePlayer) throws IOException {
         utils = new Utils();
-
+        
         SocketClient cliente = SocketClient.getInstance();       
-        cliente.init(address, port);
-        msg = utils.convertePlayerToJson(player, address);
+        cliente.init(addressServer, portServer);
+        String addressClient = InetAddress.getLocalHost().getHostAddress();
+       
+        msg = utils.convertePlayerToJson(nomePlayer, addressClient);
+        
         cliente.setMensagem(msg);
         String resposta = cliente.call();
 
