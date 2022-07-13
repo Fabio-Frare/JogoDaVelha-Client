@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  * @author Fábio e Lucas Nogueira
  * @since 07/2022
  */
-public class Login {
+public class ViewLogin {
 
     private JFrame frame;
     private JTextField txfNomePlayer;
@@ -59,7 +59,7 @@ public class Login {
             try {
                 iniciarJogoListner();
             } catch (IOException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 

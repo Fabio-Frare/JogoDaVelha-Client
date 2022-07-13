@@ -3,7 +3,7 @@ package main;
 
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
-import view.Login;
+import view.ViewLogin;
 
 /**
  * Classe de inicialização do Jogo da Velha no cliente.
@@ -15,7 +15,7 @@ public class MainClient {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        Login login = new Login();
+        ViewLogin login = new ViewLogin();
         login.show();
 
         //        testConexao();

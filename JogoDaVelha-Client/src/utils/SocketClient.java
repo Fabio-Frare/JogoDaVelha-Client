@@ -48,7 +48,7 @@ public class SocketClient {
 
     public String call() throws IOException {
         socket = new Socket(ADDRESS, PORT);
-
+        
         enviarDados();
         String res = receberDados();
         socket.close();
