@@ -62,7 +62,7 @@ public class SocketClient {
         pr.flush();
     }
 
-    private String receberDados() throws IOException {
+    public String receberDados() throws IOException {
         InputStreamReader in = new InputStreamReader(socket.getInputStream());
         BufferedReader bf    = new BufferedReader(in);
         String str           = bf.readLine();

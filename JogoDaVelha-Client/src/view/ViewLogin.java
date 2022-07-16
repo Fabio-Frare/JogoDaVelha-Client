@@ -10,9 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import org.json.simple.parser.ParseException;
 
 /**
- * View responsável por coletar dados do player.
+ * View responsável por coletar dados do player e enviar ao servidor.
  *
  * @author Fábio e Lucas Nogueira
  * @since 07/2022
@@ -60,6 +61,8 @@ public class ViewLogin {
                 iniciarJogoListner();
             } catch (IOException ex) {
                 Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -80,26 +83,7 @@ public class ViewLogin {
 
     }
 
-//    private void iniciarJogoListner() {
-//        {
-//
-//            String usuario = txfPlayer.getText();
-//            String senha = String.valueOf(txfClientIP.getPassword());
-//
-//            if (usuario.equals("fabio") && senha.equals("123")) {
-//                // entra no jogo se o usuario for joao e a senha 123
-//                Jogo jogo = new Jogo();
-//                jogo.show();
-//                frame.setVisible(false);  // esconde janela de login
-//            } else {
-//                // caso contrário, mostra mensagem que não conseguiu entrar
-//                JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
-//            }
-//        }
-//
-//    }
-
-    private void iniciarJogoListner() throws IOException {
+    private void iniciarJogoListner() throws IOException, ParseException {
         
         String nomePlayer    = txfNomePlayer.getText();
         String addressServer = txfAddressServer.getText();

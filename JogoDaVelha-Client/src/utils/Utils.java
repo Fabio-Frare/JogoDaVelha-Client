@@ -23,6 +23,16 @@ public class Utils {
         return playerJson.toJSONString();
     }
     
+    public String retornaOperacao(String msg) throws ParseException {
+
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();
+        jsonObject        = (JSONObject) parser.parse(msg);
+        String operacao   = (String) jsonObject.get("operacao");
+        
+        return operacao;
+    }
+    
 //    public Pessoa converteJsonToPessoa(String msg) throws ParseException {
 //        
 //        JSONParser parser = new JSONParser(); 
@@ -104,6 +114,8 @@ public class Utils {
 //        
 //        return listaEmpresa;
 //    }
+
+
 
 
 }
