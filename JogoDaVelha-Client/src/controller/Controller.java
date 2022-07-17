@@ -18,6 +18,7 @@ public class Controller {
 
     private Utils utils;
     private static String msg = "";
+    private ViewJogo jogo;
     
     
 
@@ -42,13 +43,16 @@ public class Controller {
     public void trataDados(String msg) throws ParseException {
         
         String operacao = utils.retornaOperacao(msg);
+        jogo = new ViewJogo();
         
         switch (operacao) {
             case "1": // Liberar o jogo para o player
-//                System.out.println("Chegou no trata dados."); 
-                ViewJogo jogo = new ViewJogo();
                 jogo.show();
-             
+                break;
+            case "2": // Bloqueia o jogo para o player (numero máximo de players)                
+                String retorno = utils.buscaMensagem(msg);                
+                jogo.numeroMaximoPlayers(retorno);
+                break;
                 
         }        
         

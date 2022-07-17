@@ -115,6 +115,16 @@ public class Utils {
 //        return listaEmpresa;
 //    }
 
+    public String buscaMensagem(String msg) throws ParseException {
+        
+        JSONParser parser = new JSONParser(); 
+        JSONObject json = (JSONObject) parser. parse(msg);        
+        String resposta = (String) json.get("msg");  
+        
+        return resposta;
+    
+    }
+
 
 
 

@@ -66,6 +66,8 @@ public class ViewLogin {
             }
         });
 
+        metodoAuxiliarAlimentaCmapos();
+        
         panel.add(nomePlayer);
         panel.add(txfNomePlayer);
         
@@ -91,10 +93,17 @@ public class ViewLogin {
          
         if(!nomePlayer.isEmpty() && !addressServer.isEmpty() && portServer > 0) {
             Controller controller = new Controller();
-            controller.enviarPlayerServer(addressServer, portServer, nomePlayer);            
+            controller.enviarPlayerServer(addressServer, portServer, nomePlayer); 
+            frame.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
         }
+    }
+    
+    private void metodoAuxiliarAlimentaCmapos() {
+        txfNomePlayer.setText("Fabio");
+        txfAddressServer.setText("Localhost");
+        txfPortServer.setText("80");
     }
     
 }

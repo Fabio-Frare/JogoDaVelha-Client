@@ -163,4 +163,10 @@ public class ViewJogo {
             }
         }
     }
+
+    public void numeroMaximoPlayers(String msg) {
+        
+        JOptionPane.showMessageDialog(null, msg);
+    
+    }
 }
