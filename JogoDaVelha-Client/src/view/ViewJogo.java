@@ -59,7 +59,7 @@ public class ViewJogo {
     private void aoPressionarBotao(JButton botaoAtual) {
 
             // lógica do jogo
-
+            
             if (!botaoAtual.getText().equals("")) return; // se botão não está vazio, não faz nada.
 
             botaoAtual.setText(usuarioAtual);
