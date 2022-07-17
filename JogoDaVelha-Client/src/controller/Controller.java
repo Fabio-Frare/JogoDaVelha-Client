@@ -17,8 +17,9 @@ import view.ViewJogo;
 public class Controller {
 
     private Utils utils;
-    private static String msg = "";
+    private String msg;
     private ViewJogo jogo;
+
     
     
 
@@ -41,6 +42,8 @@ public class Controller {
     }
     
     public void trataDados(String msg) throws ParseException {
+        
+        System.out.println("Trata Dados: " + msg);
         
         String operacao = utils.retornaOperacao(msg);
         jogo = new ViewJogo();

@@ -27,7 +27,6 @@ public class ViewJogo {
     public void show() {
 
         // cria interface
-
         JFrame frame = new JFrame("Jogo da Velha");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -164,9 +163,8 @@ public class ViewJogo {
         }
     }
 
-    public void numeroMaximoPlayers(String msg) {
-        
+    public void numeroMaximoPlayers(String msg) {        
         JOptionPane.showMessageDialog(null, msg);
-    
     }
+    
 }

@@ -56,17 +56,15 @@ public class ViewLogin {
         JButton iniciarJogo = new JButton("Iniciar");
         iniciarJogo.setBounds(70, 120, 160, 25);
         
-        iniciarJogo.addActionListener(e -> {
+        iniciarJogo.addActionListener((var e) -> {
             try {
                 iniciarJogoListner();
-            } catch (IOException ex) {
-                Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
+            } catch (IOException | ParseException ex) {
                 Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
-        metodoAuxiliarAlimentaCmapos();
+       metodoAuxiliarAlimentaCampos();
         
         panel.add(nomePlayer);
         panel.add(txfNomePlayer);
@@ -100,10 +98,10 @@ public class ViewLogin {
         }
     }
     
-    private void metodoAuxiliarAlimentaCmapos() {
+    private void metodoAuxiliarAlimentaCampos() {
         txfNomePlayer.setText("Fabio");
         txfAddressServer.setText("Localhost");
-        txfPortServer.setText("80");
+        txfPortServer.setText("80");   
     }
     
 }

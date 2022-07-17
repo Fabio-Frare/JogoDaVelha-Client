@@ -18,7 +18,7 @@ public class Utils {
         playerJson.put("operacao", "1");
         playerJson.put("nome", nome);
         playerJson.put("endereco", address);
-        System.out.println("Utils: " + playerJson.toJSONString());
+//        System.out.println("Utils: " + playerJson.toJSONString());
 
         return playerJson.toJSONString();
     }
