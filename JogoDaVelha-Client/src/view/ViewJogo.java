@@ -15,8 +15,9 @@ import javax.swing.JPanel;
  * @since 07/2022
  */
 public class ViewJogo {
-    private String usuarioAtual = "X";
+    private String caracterPlayer;
     private int jogadas = 0;
+    private boolean liberado = false;
 
     private JButton[][] botoes = {
             { new JButton(), new JButton(), new JButton()},
@@ -38,8 +39,7 @@ public class ViewJogo {
         for (int i = 0; i < botoes.length; i++) {
             for (int j = 0; j < botoes[0].length; j++ ) {
 
-                // para cada botao, adiociona a funcao a ser executada quando este
-                // for clicado
+                // para cada botao, adiociona a funcao a ser executada quando este for clicado
 
                 JButton botaoAtual = botoes[i][j];
                 panel.add(botaoAtual);
@@ -48,27 +48,37 @@ public class ViewJogo {
 
             }
         }
-
         frame.add(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
-
-    private void aoPressionarBotao(JButton botaoAtual) {
+    
+     private void aoPressionarBotao(JButton botaoAtual) {
 
             // lógica do jogo
             
-            if (!botaoAtual.getText().equals("")) return; // se botão não está vazio, não faz nada.
+            // se botão não está vazio ou o jogo não estiver liberado, não faz nada.
+            if (!botaoAtual.getText().equals("") || !liberado) {
+                return;
+            } 
 
-            botaoAtual.setText(usuarioAtual);
+            botaoAtual.setText(caracterPlayer);            
+            String posicao = retornaPosicaoBotaoClicado(botaoAtual);
+            System.out.println("Posicao: " + posicao);
+            
+            // Precisa enviar a atualização para o servidor e liberado  = false;
+            
+            
+            
+                       
             jogadas++;
             boolean venceu = houveVencedor(); // testa se houve um vencedor
 
             if (venceu) {
                 // se houve um vencedor, mostra o vencedor e reinicia o jogo
-                JOptionPane.showMessageDialog(null, "O vencedor foi " + usuarioAtual);
+                JOptionPane.showMessageDialog(null, "O vencedor foi " + caracterPlayer);
                 reiniciarJogo();
             }
             else {
@@ -78,10 +88,10 @@ public class ViewJogo {
                     JOptionPane.showMessageDialog(null, "O jogo empatou!");
                     reiniciarJogo();
                 }
-                else {
-                    // se nao foi a ultima jogada, troca o jogador e continua o jogo
-                    usuarioAtual = (usuarioAtual.equals("X")) ? "O" : "X";
-                }
+//                else {
+//                    // se nao foi a ultima jogada, troca o jogador e continua o jogo
+//                    caracterPlayer = (caracterPlayer.equals("X")) ? "O" : "X";
+//                }
             }
     }
 
@@ -158,13 +168,41 @@ public class ViewJogo {
             for (int j = 0; j < botoes[0].length; j++) {
                 botoes[i][j].setText(""); // reseta o texto do botao
                 jogadas = 0;  // reseta o contador de jogadas
-                usuarioAtual = "X"; // primeiro jogador é 'X'
+                caracterPlayer = "X"; // primeiro jogador é 'X'
             }
         }
     }
 
     public void numeroMaximoPlayers(String msg) {        
         JOptionPane.showMessageDialog(null, msg);
+    }
+
+    public String getCaracterPlayer() {
+        return caracterPlayer;
+    }
+
+    public void setCaracterPlayer(String caracterPlayer) {
+        this.caracterPlayer = caracterPlayer;
+    }
+
+    public boolean isLiberado() {
+        return liberado;
+    }
+
+    public void setLiberado(boolean liberado) {
+        this.liberado = liberado;
+    }
+
+    private String retornaPosicaoBotaoClicado(JButton botaoAtual) {
+        String posicao = "";
+        for (int i = 0; i < 3 ; i++) {
+              for (int j = 0; j < 3; j++) {
+                  if(botoes[i][j].equals(botaoAtual)){
+                       posicao = "Botão: x: "+ i + "y:" + j;
+                  }
+              }
+         }
+        return posicao;
     }
     
 }

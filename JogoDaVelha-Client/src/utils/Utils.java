@@ -125,6 +125,26 @@ public class Utils {
     
     }
 
+    public String buscaCaracterPlayer(String msg) throws ParseException {
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();
+        jsonObject        = (JSONObject) parser.parse(msg);
+        String caracter   = (String) jsonObject.get("caracter");
+        
+        return caracter;
+    
+    }
+
+    public boolean jogoLiberado(String msg) throws ParseException {
+        JSONObject jsonObject;
+        JSONParser parser = new JSONParser();
+        jsonObject        = (JSONObject) parser.parse(msg);
+        boolean liberado  =  (boolean) jsonObject.get("liberado");
+        
+        return liberado;
+    
+    }
+
 
 
 
