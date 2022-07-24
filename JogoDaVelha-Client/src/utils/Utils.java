@@ -16,12 +16,25 @@ public class Utils {
         
         JSONObject playerJson = new JSONObject();  
         playerJson.put("operacao", "1");
-        playerJson.put("nome", nome);
+        playerJson.put("nome"    , nome);
         playerJson.put("endereco", address);
 //        System.out.println("Utils: " + playerJson.toJSONString());
 
         return playerJson.toJSONString();
     }
+    
+    public String atualizaPosicaoClicada(String posicaox, String posicaoy) {
+        
+        JSONObject playerJson = new JSONObject();  
+        playerJson.put("operacao", "2");
+        playerJson.put("posicaox", posicaox);
+        playerJson.put("posicaoy", posicaoy);
+        
+//        System.out.println("atualizaPosicaoClicada " + playerJson.toJSONString() );
+
+        return playerJson.toJSONString();
+    }
+    
     
     public String retornaOperacao(String msg) throws ParseException {
 

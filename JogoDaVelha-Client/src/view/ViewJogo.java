@@ -2,11 +2,16 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utils.SocketClient;
+import utils.Utils;
 
 /**
  * Classe responsável pela view e regras do jogo.
@@ -18,6 +23,9 @@ public class ViewJogo {
     private String caracterPlayer;
     private int jogadas = 0;
     private boolean liberado = false;
+    private String posicaox;
+    private String posicaoy;
+    
 
     private JButton[][] botoes = {
             { new JButton(), new JButton(), new JButton()},
@@ -44,7 +52,13 @@ public class ViewJogo {
                 JButton botaoAtual = botoes[i][j];
                 panel.add(botaoAtual);
 
-                botaoAtual.addActionListener(e -> aoPressionarBotao(botaoAtual));
+                botaoAtual.addActionListener(e -> {
+                    try {
+                        aoPressionarBotao(botaoAtual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ViewJogo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
 
             }
         }
@@ -55,7 +69,7 @@ public class ViewJogo {
 
     }
     
-     private void aoPressionarBotao(JButton botaoAtual) {
+     private void aoPressionarBotao(JButton botaoAtual) throws IOException {
 
             // lógica do jogo
             
@@ -65,12 +79,14 @@ public class ViewJogo {
             } 
 
             botaoAtual.setText(caracterPlayer);            
-            String posicao = retornaPosicaoBotaoClicado(botaoAtual);
-            System.out.println("Posicao: " + posicao);
+            retornaPosicaoBotaoClicado(botaoAtual);
+            System.out.println("PosicaoX: " + posicaox + "\nPosiçãoY: "+ posicaoy);
             
             // Precisa enviar a atualização para o servidor e liberado  = false;
-            
-            
+            SocketClient socketcliente = SocketClient.getInstance();
+            Utils utils = new Utils();
+            socketcliente.setMensagem(utils.atualizaPosicaoClicada(posicaox, posicaoy));
+            socketcliente.call();
             
                        
             jogadas++;
@@ -193,16 +209,17 @@ public class ViewJogo {
         this.liberado = liberado;
     }
 
-    private String retornaPosicaoBotaoClicado(JButton botaoAtual) {
-        String posicao = "";
+    private void retornaPosicaoBotaoClicado(JButton botaoAtual) {
+        posicaox = "";
+        posicaoy = "";
         for (int i = 0; i < 3 ; i++) {
               for (int j = 0; j < 3; j++) {
                   if(botoes[i][j].equals(botaoAtual)){
-                       posicao = "Botão: x: "+ i + "y:" + j;
+                       posicaox = String.valueOf(i);
+                       posicaoy = String.valueOf(j);
                   }
               }
          }
-        return posicao;
     }
     
 }
