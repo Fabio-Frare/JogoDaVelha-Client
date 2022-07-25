@@ -23,12 +23,13 @@ public class Utils {
         return playerJson.toJSONString();
     }
     
-    public String atualizaPosicaoClicada(String posicaox, String posicaoy) {
+    public String atualizaPosicaoClicada(String posicaox, String posicaoy, String caracterPlayer) {
         
         JSONObject playerJson = new JSONObject();  
         playerJson.put("operacao", "2");
         playerJson.put("posicaox", posicaox);
         playerJson.put("posicaoy", posicaoy);
+        playerJson.put("caracter", caracterPlayer);
         
 //        System.out.println("atualizaPosicaoClicada " + playerJson.toJSONString() );
 

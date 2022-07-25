@@ -1,5 +1,6 @@
 package view;
 
+import controller.Controller;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
@@ -80,15 +81,15 @@ public class ViewJogo {
 
             botaoAtual.setText(caracterPlayer);            
             retornaPosicaoBotaoClicado(botaoAtual);
-            System.out.println("PosicaoX: " + posicaox + "\nPosiçãoY: "+ posicaoy);
-            
+
             // Precisa enviar a atualização para o servidor e liberado  = false;
             SocketClient socketcliente = SocketClient.getInstance();
             Utils utils = new Utils();
-            socketcliente.setMensagem(utils.atualizaPosicaoClicada(posicaox, posicaoy));
+            socketcliente.setMensagem(utils.atualizaPosicaoClicada(posicaox, posicaoy, caracterPlayer));
             socketcliente.call();
             
-                       
+            liberado = false;
+                      
             jogadas++;
             boolean venceu = houveVencedor(); // testa se houve um vencedor
 

@@ -2,6 +2,7 @@ package main;
 
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+import utils.SocketClient;
 import view.ViewLogin;
 
 /**
@@ -16,7 +17,14 @@ public class MainClient {
 
         ViewLogin login = new ViewLogin();
         login.show();
-
+        
+//        SocketClient socketClient = new SocketClient();  
+//            
+//        while (true) {
+//            String msg = socketClient.getInstance().receberDados();
+//            System.out.println("Main" + msg);
+//            
+//        }
     }
-
+    
 }

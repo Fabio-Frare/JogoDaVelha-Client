@@ -23,7 +23,7 @@ public class SocketClient {
 
     private static SocketClient ss;
 
-    private SocketClient() throws IOException {
+    public SocketClient() throws IOException {
     }
 
     public static SocketClient getInstance() {
@@ -50,7 +50,12 @@ public class SocketClient {
         socket = new Socket(ADDRESS, PORT);
         
         enviarDados();
+        
+        // Colocar o método ReceberDados dentro de uma Thread
         String res = receberDados();
+        
+        
+        
         socket.close();
 
         return res;
@@ -62,12 +67,13 @@ public class SocketClient {
         pr.flush();
     }
 
-    private String receberDados() throws IOException {
+    public String receberDados() throws IOException {
         InputStreamReader in = new InputStreamReader(socket.getInputStream());
         BufferedReader bf    = new BufferedReader(in);
         String str           = bf.readLine();
         
         return str;
     }
+
 
 }
