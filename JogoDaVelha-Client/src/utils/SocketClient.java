@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author Fabio e Lucas Nogueira
  * @since 07/2022
  */
-public class SocketClient {
+public class SocketClient extends Thread {
 
     private static String ADDRESS;
     private static int PORT;
@@ -24,6 +24,7 @@ public class SocketClient {
     private static SocketClient ss;
 
     public SocketClient() throws IOException {
+//        start();
     }
 
     public static SocketClient getInstance() {
@@ -52,11 +53,10 @@ public class SocketClient {
         enviarDados();
         
         // Colocar o método ReceberDados dentro de uma Thread
-        String res = receberDados();
+        String res = receberDados();     
         
         
-        
-        socket.close();
+//        socket.close();
 
         return res;
     }
@@ -73,6 +73,19 @@ public class SocketClient {
         String str           = bf.readLine();
         
         return str;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("Executando a thread.");
+//            socket = new Socket(ADDRESS, PORT);
+            String retorno = receberDados();
+            System.out.println("msg da thread. "+ retorno);
+        } catch (IOException ex) {
+            Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
 

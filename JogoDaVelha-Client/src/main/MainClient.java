@@ -19,12 +19,8 @@ public class MainClient {
         login.show();
         
 //        SocketClient socketClient = new SocketClient();  
-//            
-//        while (true) {
-//            String msg = socketClient.getInstance().receberDados();
-//            System.out.println("Main" + msg);
-//            
-//        }
+//        socketClient.start();
+        
     }
     
 }
