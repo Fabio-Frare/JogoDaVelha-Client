@@ -20,6 +20,7 @@ public class SocketClient extends Thread {
     private static int PORT;
     private static Socket socket;
     private String msg;
+    String res;
 
     private static SocketClient ss;
 
@@ -55,11 +56,11 @@ public class SocketClient extends Thread {
         // Colocar o método ReceberDados dentro de uma Thread
         String res = receberDados();     
         
-        
 //        socket.close();
 
         return res;
     }
+    
 
     private void enviarDados() throws IOException {
         PrintWriter pr = new PrintWriter(socket.getOutputStream());
@@ -71,6 +72,7 @@ public class SocketClient extends Thread {
         InputStreamReader in = new InputStreamReader(socket.getInputStream());
         BufferedReader bf    = new BufferedReader(in);
         String str           = bf.readLine();
+        socket.close();
         
         return str;
     }
@@ -80,12 +82,11 @@ public class SocketClient extends Thread {
         try {
             System.out.println("Executando a thread.");
 //            socket = new Socket(ADDRESS, PORT);
-            String retorno = receberDados();
-            System.out.println("msg da thread. "+ retorno);
+            receberDados();
+//            System.out.println("msg da thread. "+ retorno);
         } catch (IOException ex) {
             Logger.getLogger(SocketClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
+        }    
     }
 
 

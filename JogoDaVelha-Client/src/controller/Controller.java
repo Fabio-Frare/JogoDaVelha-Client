@@ -33,6 +33,8 @@ public class Controller {
         msg = utils.convertePlayerToJson(nomePlayer, addressClient);
         
         cliente.setMensagem(msg);
+//        cliente.start();
+        
         String resposta = cliente.call();
 
         trataDados(resposta);
@@ -61,6 +63,8 @@ public class Controller {
                 break;
                         
             case "3": // Recebe atualização
+//                SocketClient sc = SocketClient.getInstance();
+//                sc.start();
                 recebeAtualizacao(msg);
                 break;
                 

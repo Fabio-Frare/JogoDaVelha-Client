@@ -92,7 +92,7 @@ public class ViewLogin {
         if(!nomePlayer.isEmpty() && !addressServer.isEmpty() && portServer > 0) {
             Controller controller = new Controller();
             controller.enviarPlayerServer(addressServer, portServer, nomePlayer); 
-            frame.setVisible(false);
+            frame.setVisible(false);            
         } else {
             JOptionPane.showMessageDialog(null, "Favor informar todos os dados.");
         }

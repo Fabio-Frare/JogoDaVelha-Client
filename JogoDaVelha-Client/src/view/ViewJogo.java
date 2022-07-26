@@ -11,7 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.json.simple.parser.ParseException;
 import utils.SocketClient;
+import utils.ThreadAuxiliar;
 import utils.Utils;
 
 /**
@@ -58,6 +60,8 @@ public class ViewJogo {
                         aoPressionarBotao(botaoAtual);
                     } catch (IOException ex) {
                         Logger.getLogger(ViewJogo.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ViewJogo.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
 
@@ -70,7 +74,7 @@ public class ViewJogo {
 
     }
     
-     private void aoPressionarBotao(JButton botaoAtual) throws IOException {
+     private void aoPressionarBotao(JButton botaoAtual) throws IOException, ParseException {
 
             // lógica do jogo
             
@@ -81,35 +85,40 @@ public class ViewJogo {
 
             botaoAtual.setText(caracterPlayer);            
             retornaPosicaoBotaoClicado(botaoAtual);
-
+            liberado = false;
+            
             // Precisa enviar a atualização para o servidor e liberado  = false;
             SocketClient socketcliente = SocketClient.getInstance();
             Utils utils = new Utils();
             socketcliente.setMensagem(utils.atualizaPosicaoClicada(posicaox, posicaoy, caracterPlayer));
-            socketcliente.call();
+            String teste = socketcliente.call();
+//            socketcliente.start();
+            Controller controller = new Controller();
+            controller.trataDados(teste);
             
-            liberado = false;
                       
-            jogadas++;
-            boolean venceu = houveVencedor(); // testa se houve um vencedor
-
-            if (venceu) {
-                // se houve um vencedor, mostra o vencedor e reinicia o jogo
-                JOptionPane.showMessageDialog(null, "O vencedor foi " + caracterPlayer);
-                reiniciarJogo();
-            }
-            else {
-                // se nao houve vencedor ...
-                if (jogadas == 9) {
-                    // se foi a ultima jogada, mostra o resultado de empate e reinicia o jogo
-                    JOptionPane.showMessageDialog(null, "O jogo empatou!");
-                    reiniciarJogo();
-                }
-//                else {
-//                    // se nao foi a ultima jogada, troca o jogador e continua o jogo
-//                    caracterPlayer = (caracterPlayer.equals("X")) ? "O" : "X";
+//            jogadas++;
+//           
+//            
+//            boolean venceu = houveVencedor(); // testa se houve um vencedor
+//
+//            if (venceu) {
+//                // se houve um vencedor, mostra o vencedor e reinicia o jogo
+//                JOptionPane.showMessageDialog(null, "O vencedor foi " + caracterPlayer);
+//                reiniciarJogo();
+//            }
+//            else {
+//                // se nao houve vencedor ...
+//                if (jogadas == 9) {
+//                    // se foi a ultima jogada, mostra o resultado de empate e reinicia o jogo
+//                    JOptionPane.showMessageDialog(null, "O jogo empatou!");
+//                    reiniciarJogo();
 //                }
-            }
+////                else {
+////                    // se nao foi a ultima jogada, troca o jogador e continua o jogo
+////                    caracterPlayer = (caracterPlayer.equals("X")) ? "O" : "X";
+////                }
+//            }
     }
 
     private boolean houveVencedor() {
