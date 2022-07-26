@@ -58,9 +58,7 @@ public class ViewJogo {
                 botaoAtual.addActionListener(e -> {
                     try {
                         aoPressionarBotao(botaoAtual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(ViewJogo.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
+                    } catch (IOException | ParseException ex) {
                         Logger.getLogger(ViewJogo.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
@@ -89,6 +87,7 @@ public class ViewJogo {
             
             // Precisa enviar a atualização para o servidor e liberado  = false;
             SocketClient socketcliente = SocketClient.getInstance();
+            
             Utils utils = new Utils();
             socketcliente.setMensagem(utils.atualizaPosicaoClicada(posicaox, posicaoy, caracterPlayer));
             String teste = socketcliente.call();

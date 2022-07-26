@@ -12,6 +12,8 @@ import java.util.logging.Logger;
  */
 public class ThreadAuxiliar extends Thread {
     
+    public String retorno = " ";
+    
     public ThreadAuxiliar() {
 //        start();
     }
@@ -21,11 +23,21 @@ public class ThreadAuxiliar extends Thread {
     public void run() {
         SocketClient socketClient = SocketClient.getInstance();
         try {
-           socketClient.receberDados();
+            System.out.println("Thread Aux");
+           retorno = socketClient.receberDados();           
         } catch (IOException ex) {
             Logger.getLogger(ThreadAuxiliar.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
+
+    public String getRetorno() {
+        return retorno;
+    }
+
+    public void setRetorno(String retorno) {
+        this.retorno = retorno;
+    }
+    
     
 }
